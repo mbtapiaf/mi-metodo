@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi método · Laboratorio de técnicas de estudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#13322b;        /* verde muy oscuro, casi tinta */
+  --paper:#f3f7f4;      /* fondo claro menta grisáceo */
+  --paper-2:#ffffff;
+  --moss:#2f7d63;       /* verde laboratorio */
+  --moss-soft:#e3f0ea;
+  --amber:#e8a33d;      /* acento cálido: acción y veredictos */
+  --amber-soft:#fbeecf;
+  --coral:#d96a56;      /* descarte / alerta suave */
+  --line:#cfe0d8;
+  --muted:#5c7167;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Outfit',system-ui,sans-serif;font-weight:400;
+  font-size:clamp(16px,1.1vw,18px);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.1;font-weight:600;letter-spacing:-.01em}
+a{color:var(--moss)}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(243,247,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav .wrap{display:flex;align-items:center;gap:8px;height:60px;flex-wrap:wrap}
+.brand{font-family:'Space Mono',monospace;font-weight:700;font-size:15px;color:var(--moss);margin-right:auto;letter-spacing:-.02em}
+.brand b{color:var(--ink)}
+nav a{font-size:14.5px;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:8px}
+nav a:hover{color:var(--ink);background:var(--moss-soft)}
+@media(max-width:640px){nav a{padding:6px 7px;font-size:13px}.brand{width:100%;margin-bottom:-6px}}
+
+/* ---------- HERO ---------- */
+header.hero{padding:clamp(48px,9vw,110px) 0 clamp(40px,6vw,70px)}
+.kicker{font-family:'Space Mono',monospace;font-size:13px;color:var(--moss);margin:0 0 18px}
+.hero h1{font-size:clamp(38px,7vw,74px);margin:0 0 22px;max-width:15ch}
+.hero h1 em{font-style:italic;color:var(--moss)}
+.hero p.lead{font-size:clamp(18px,2.2vw,23px);max-width:60ch;color:var(--ink);margin:0 0 30px}
+.hero .sig{color:var(--muted);font-size:15.5px;max-width:58ch}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 0}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-weight:600;font-size:16px;padding:13px 22px;border-radius:999px;text-decoration:none;transition:transform .08s ease, box-shadow .2s ease}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--amber);color:#3a2606;box-shadow:0 6px 18px -8px rgba(232,163,61,.8)}
+.btn-primary:hover{box-shadow:0 10px 24px -8px rgba(232,163,61,.9)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--moss);color:var(--moss)}
+
+/* ---------- SECTIONS ---------- */
+section{padding:clamp(44px,7vw,88px) 0;border-top:1px solid var(--line)}
+.sec-head{max-width:62ch;margin:0 0 40px}
+.sec-head .eye{font-family:'Space Mono',monospace;font-size:13px;color:var(--amber);margin:0 0 12px;font-weight:700}
+.sec-head h2{font-size:clamp(28px,4.4vw,44px);margin:0 0 14px}
+.sec-head p{color:var(--muted);font-size:17.5px;margin:0}
+
+/* ---------- IDEAS DEL MARCO ---------- */
+.ideas{display:grid;gap:18px;grid-template-columns:repeat(2,1fr)}
+@media(max-width:720px){.ideas{grid-template-columns:1fr}}
+.idea{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;padding:26px 24px}
+.idea h3{font-size:21px;margin:0 0 10px}
+.idea p{margin:0;color:var(--muted);font-size:16px}
+.idea .n{font-family:'Space Mono',monospace;color:var(--moss);font-size:13px;font-weight:700}
+.idea.flag{grid-column:1/-1;background:linear-gradient(180deg,var(--amber-soft),#fff);border-color:#e7cf96}
+.idea.flag h3{font-size:clamp(24px,3.4vw,32px);color:#7a5410}
+.idea.flag p{color:#6e5423;font-size:17.5px;max-width:70ch}
+
+/* ---------- CATÁLOGO ---------- */
+.tech-grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(max-width:720px){.tech-grid{grid-template-columns:1fr}}
+.tech{position:relative;text-align:left;background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:20px 20px 18px;cursor:pointer;font-family:inherit;transition:border-color .15s,transform .08s,box-shadow .2s;width:100%}
+.tech:hover{border-color:var(--moss);box-shadow:0 12px 28px -18px rgba(47,125,99,.7)}
+.tech:active{transform:translateY(1px)}
+.tech .tnum{font-family:'Space Mono',monospace;font-size:12.5px;color:var(--moss);font-weight:700}
+.tech .evi{float:right;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--moss-soft);color:var(--moss)}
+.tech .evi.top{background:var(--amber-soft);color:#8a5c12}
+.tech h3{font-size:19px;margin:10px 0 6px;font-family:'Fraunces',serif}
+.tech p{margin:0;color:var(--muted);font-size:15px}
+.demoted{margin-top:22px;background:var(--moss-soft);border:1px dashed #a9cabc;border-radius:16px;padding:22px 24px}
+.demoted h3{margin:0 0 8px;font-size:19px}
+.demoted p{margin:0;color:#3f5a4f;font-size:16px}
+
+/* ---------- MODAL ---------- */
+.modal-bg{position:fixed;inset:0;background:rgba(19,50,43,.55);backdrop-filter:blur(3px);display:none;align-items:flex-start;justify-content:center;z-index:100;padding:24px 16px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--paper-2);border-radius:22px;max-width:640px;width:100%;padding:34px 32px;margin:auto;position:relative;animation:pop .2s ease}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.modal .close{position:absolute;top:16px;right:16px;border:none;background:var(--paper);width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer;color:var(--ink);line-height:1}
+.modal .tnum{font-family:'Space Mono',monospace;font-size:13px;color:var(--moss);font-weight:700}
+.modal h3{font-size:27px;margin:8px 0 20px;max-width:22ch}
+.modal .field{margin:0 0 18px}
+.modal .field .lab{font-family:'Space Mono',monospace;font-size:12px;text-transform:none;color:var(--amber);font-weight:700;margin:0 0 4px;display:block}
+.modal .field p{margin:0;font-size:16.5px}
+.modal .field.err{background:var(--paper);border-left:3px solid var(--coral);padding:12px 16px;border-radius:0 10px 10px 0}
+.modal .extra{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.modal .extra a{display:inline-flex;align-items:center;gap:8px;font-weight:600;text-decoration:none;background:var(--moss-soft);padding:10px 16px;border-radius:10px;font-size:15px}
+.modal .extra a:hover{background:#d4e8df}
+.modal .extra small{display:block;color:var(--muted);font-size:13px;margin-top:8px}
+
+/* ---------- LAB / FICHA ---------- */
+.lab{background:var(--ink);color:#dfeee7;border-radius:24px;padding:clamp(28px,4vw,44px)}
+.lab .sec-head h2{color:#fff}.lab .sec-head p{color:#a9c6ba}.lab .sec-head .eye{color:var(--amber)}
+.rules{display:grid;gap:10px;grid-template-columns:repeat(3,1fr);margin:0 0 30px}
+@media(max-width:720px){.rules{grid-template-columns:1fr}}
+.rule{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px 18px;font-size:14.5px;color:#cfe6db}
+.rule b{color:#fff;display:block;font-family:'Fraunces',serif;font-size:16px;margin-bottom:4px;font-weight:600}
+form{display:grid;gap:16px}
+label.f{display:block}
+label.f .lab{display:block;font-weight:600;margin:0 0 6px;font-size:15.5px;color:#fff}
+label.f .hint{font-weight:400;color:#9fc0b3;font-size:13.5px}
+input[type=text],textarea,select{width:100%;font-family:inherit;font-size:15.5px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;resize:vertical}
+input::placeholder,textarea::placeholder{color:#8fb0a3}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--amber);border-color:transparent}
+select option{color:#13322b}
+.check{display:flex;gap:12px;align-items:flex-start;background:rgba(232,163,61,.13);border:1px solid rgba(232,163,61,.4);border-radius:12px;padding:14px 16px}
+.check input{margin-top:4px;width:20px;height:20px;accent-color:var(--amber);flex:none}
+.check label{font-size:14.5px;color:#f3e2c4}
+.verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.verdict{grid-template-columns:1fr}}
+.verdict label{cursor:pointer}
+.verdict input{position:absolute;opacity:0}
+.verdict span{display:block;text-align:center;padding:12px 8px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);font-weight:600;font-size:14.5px;transition:.15s}
+.verdict input:checked+span{background:var(--amber);color:#3a2606;border-color:var(--amber)}
+.lab-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.saved-note{font-family:'Space Mono',monospace;font-size:12.5px;color:#9fc0b3;margin-top:4px;min-height:16px}
+
+/* ---------- MI MÉTODO ---------- */
+.method label.f .lab{color:var(--ink)}
+.method input,.method textarea{background:var(--paper-2);border:1px solid var(--line);color:var(--ink)}
+.method input::placeholder,.method textarea::placeholder{color:#9fb3aa}
+.method input:focus,.method textarea:focus{outline:2px solid var(--moss)}
+.method .hint{color:var(--muted)}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);padding:40px 0 60px;color:var(--muted);font-size:14.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
+footer .refs{max-width:60ch;font-size:12.5px;line-height:1.6}
+footer .refs b{color:var(--ink);font-family:'Space Mono',monospace;font-size:12px}
+
+.pill{display:inline-block;font-family:'Space Mono',monospace;font-size:11.5px;font-weight:700;color:var(--moss);background:var(--moss-soft);padding:4px 10px;border-radius:999px}
+
+/* ---- Barra de progreso de lectura ---- */
+#progressbar{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg,var(--moss),var(--amber));z-index:60;transition:width .12s ease-out}
+nav{top:0}
+
+/* ---- Animación de entrada al hacer scroll ---- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---- Contador de técnicas probadas ---- */
+.tracker{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--moss-soft);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:0 0 26px}
+.tracker .bar{flex:1;min-width:140px;height:9px;background:#fff;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.tracker .bar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--moss),var(--amber));border-radius:999px;transition:width .4s ease}
+.tracker .count{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--moss);white-space:nowrap}
+.tracker .reset{font-size:12.5px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:inherit}
+.tracker .reset:hover{color:var(--coral)}
+
+/* ---- Marca de "probada" en las tarjetas ---- */
+.tech{transition:border-color .15s,transform .08s,box-shadow .2s,background .2s}
+.tech.done{background:var(--moss-soft);border-color:var(--moss)}
+.tech .donemark{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;transition:.15s}
+.tech.done .donemark{background:var(--moss);border-color:var(--moss);color:#fff}
+.tech .evi{margin-right:30px}
+.tech-check{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--muted);cursor:pointer;user-select:none}
+.tech-check input{width:17px;height:17px;accent-color:var(--moss);cursor:pointer}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div id="progressbar"></div>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">Autonom<b>IA</b></span>
+    <a href="#marco">Cómo funciona</a>
+    <a href="#catalogo">Técnicas</a>
+    <a href="#lab">Experimento</a>
+    <a href="#metodo">Mi método</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">// laboratorio de técnicas de estudio</p>
+    <h1>Mi método de estudio</h1>
+    <p class="lead">Muchas veces estudiamos como aprendimos alguna vez: subrayando, releyendo o haciendo maratones de último momento. Son las técnicas más comunes, pero no las más efectivas.</p>
+    <p class="sig">Acá vas a conocer y probar técnicas de estudio con evidencia, que rinden mucho más. La clave es probarlas, quedarte con las que mejor te funcionan según tu carrera o cada materia, y armar con ellas tu propio método.</p>
+    <div class="cta-row">
+      <a href="#catalogo" class="btn btn-primary">Ver las técnicas</a>
+      <a href="#lab" class="btn btn-ghost">Empezar un experimento</a>
+    </div>
+  </div>
+</header>
+
+<section id="marco">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eye">antes de empezar</p>
+      <h2>Cuatro ideas para entender por qué esto funciona</h2>
+      <p>No hace falta que las estudies. Alcanza con que las tengas presentes cuando algo te resulte raro o incómodo mientras probás.</p>
+    </div>
+    <div class="ideas">
+      <div class="idea">
+        <span class="n">idea 01</span>
+        <h3>Lo que se usa ≠ lo que funciona</h3>
+        <p>Releer y subrayar son lo más común y lo que menos rinde. Ponerte a prueba y distribuir el estudio en el tiempo son lo que más aprendizaje produce. Casi nadie llega usándolas.</p>
+      </div>
+      <div class="idea">
+        <span class="n">idea 02</span>
+        <h3>Las dificultades deseables</h3>
+        <p>Las técnicas que funcionan se sienten peor mientras las usás: cuestan más que releer. Ese esfuerzo extra no es que la técnica falle: es la señal de que estás aprendiendo. Las primeras sesiones se sienten peor. Es el costo de entrada, no el resultado.</p>
+      </div>
+      <div class="idea flag">
+        <span class="n">idea 03 · la más importante</span>
+        <h3>La ilusión de fluidez</h3>
+        <p>Releer un apunte lo vuelve familiar, y la familiaridad se siente como saber. Pero reconocer no es recuperar: el parcial no pregunta "¿te suena?", pide producir la resolución desde cero. Eso explica el clásico "lo sabía pero me bloqueé": casi nunca hubo bloqueo, hubo familiaridad confundida con dominio.</p>
+      </div>
+      <div class="idea" style="grid-column:1/-1">
+        <span class="n">idea 04</span>
+        <h3>Estudiar es un experimento</h3>
+        <p>Cada técnica que probás es una hipótesis: planificás (elegís técnica, materia y qué esperás que cambie), ejecutás (la aplicás con un registro mínimo) y evaluás (escribís tu veredicto). No aprendés <em>sobre</em> el método de estudio: lo construís probando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eye">el catálogo</p>
+      <h2>Ocho técnicas con evidencia a favor</h2>
+      <p>Tocá cada una para ver qué es, cómo se hace en una materia de ingeniería, cuándo conviene y el error típico. No las leas todas de una: elegí por dónde empezar y probá.</p>
+    </div>
+    <div class="tracker">
+      <span class="count" id="trackCount">0 de 8 probadas</span>
+      <div class="bar"><span id="trackBar"></span></div>
+      <button class="reset" onclick="resetTrack()">reiniciar</button>
+    </div>
+    <div class="tech-grid" id="techGrid"></div>
+
+    <div class="demoted">
+      <h3>Y las tres de siempre: releer, subrayar, pasar en limpio</h3>
+      <p>No están prohibidas: están degradadas a su función real. Releer sirve para la primera pasada de un tema, no para repasar. Subrayar sirve si es selectivo de verdad (si subrayaste media página, no seleccionaste nada). Pasar en limpio solo sirve si al pasarlo lo transformás —reorganizar, esquematizar, agregar tus preguntas—; copiar prolijo es tiempo de estudio disfrazado. No están mal: te devuelven menos de lo que te cuestan, porque producen familiaridad, y la familiaridad se disfraza de saber.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap lab" id="lab">
+    <div class="sec-head">
+      <p class="eye">// el experimento</p>
+      <h2>Armá tu experimento</h2>
+      <p>Completá esto al elegir la técnica (antes) y volvé a las dos semanas para el veredicto (después). En el medio, solo aplicala y anotá una línea por sesión en tu registro.</p>
+    </div>
+
+    <div class="rules">
+      <div class="rule"><b>Uno por vez</b>Un experimento a la vez (máximo dos si son de materias distintas).</div>
+      <div class="rule"><b>Lejos del parcial</b>Nada de experimentos la semana previa a un parcial. Se rinde con el método ya validado.</div>
+      <div class="rule"><b>Arrancá ganando</b>Que tu primer experimento sea la técnica 1 o la 2: las de efecto más rápido.</div>
+    </div>
+
+    <form id="expForm" autocomplete="off">
+      <label class="f"><span class="lab">Técnica elegida</span>
+        <select id="e_tec"></select>
+      </label>
+      <label class="f"><span class="lab">Materia y tema <span class="hint">— una sola materia por experimento; el experimento limpio aísla variables</span></span>
+        <input type="text" id="e_mat" placeholder="Ej.: Análisis Matemático I — derivadas">
+      </label>
+      <label class="f"><span class="lab">Mi punto de partida <span class="hint">— ¿cómo venís estudiando esta materia y qué resultado te da?</span></span>
+        <textarea id="e_part" rows="2" placeholder="Ej.: releo la teoría y hago los TP mirando ejemplos; llego al parcial sin saber si sé"></textarea>
+      </label>
+      <label class="f"><span class="lab">Mi hipótesis <span class="hint">— qué esperás que cambie, en concreto</span></span>
+        <textarea id="e_hip" rows="2" placeholder="Ej.: que los ejercicios del práctico me salgan sin mirar la carpeta"></textarea>
+      </label>
+      <label class="f"><span class="lab">Cómo voy a saber si funcionó <span class="hint">— la evidencia que vas a mirar</span></span>
+        <textarea id="e_evi" rows="2" placeholder="Ej.: cuántos ejercicios salen solos; resultado de una práctica de parcial; sensación de control en clase"></textarea>
+      </label>
+      <div class="check">
+        <input type="checkbox" id="e_adv">
+        <label for="e_adv">Sé que los primeros días esta técnica se va a sentir más difícil que mi método de siempre, y que eso no es señal de que falle. <b>(la dificultad deseable, aceptada)</b></label>
+      </div>
+
+      <label class="f"><span class="lab">Veredicto <span class="hint">— completalo recién al terminar</span></span></label>
+      <div class="verdict">
+        <label><input type="radio" name="ver" value="La adopto"><span>La adopto</span></label>
+        <label><input type="radio" name="ver" value="La adopto con ajustes"><span>La adopto con ajustes</span></label>
+        <label><input type="radio" name="ver" value="La descarto"><span>La descarto</span></label>
+      </div>
+      <label class="f"><span class="lab">¿Por qué ese veredicto? <span class="hint">— descartar con fundamento también es un resultado válido: es autoconocimiento</span></span>
+        <textarea id="e_ver_txt" rows="2" placeholder="Qué pasó, qué ajustarías, por qué la dejás o la seguís usando"></textarea>
+      </label>
+
+      <div class="lab-actions">
+        <button type="button" class="btn btn-primary" onclick="saveExp()">Guardar experimento</button>
+        <button type="button" class="btn btn-ghost" style="color:#dfeee7;border-color:rgba(255,255,255,.25)" onclick="downloadExp()">Descargar ficha</button>
+        <button type="button" class="btn btn-ghost" style="color:#dfeee7;border-color:rgba(255,255,255,.25)" onclick="clearExp()">Vaciar</button>
+      </div>
+      <p class="saved-note" id="expNote"></p>
+    </form>
+  </div>
+</section>
+
+<section id="metodo" class="method">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eye">el artefacto final</p>
+      <h2>Mi método <span class="pill">versión 1</span></h2>
+      <p>Cuando tengas dos a cuatro experimentos con veredicto, armá esto: una página, tuya, con lo que te funcionó. No tiene que ser el mismo método para todas las materias. Se versiona: la v2 la armás al cierre del segundo semestre.</p>
+    </div>
+    <form id="metForm" autocomplete="off">
+      <label class="f"><span class="lab">Antes de estudiar <span class="hint">— cómo planifico la semana, en qué momentos rindo, cómo armo el bloque protegido</span></span>
+        <textarea id="m_antes" rows="3" placeholder="Escribí tu forma de arrancar la semana de estudio"></textarea>
+      </label>
+      <label class="f"><span class="lab">Mientras estudio <span class="hint">— mis técnicas adoptadas, por materia si difieren</span></span>
+        <textarea id="m_durante" rows="3" placeholder="Ej.: en Análisis, recuperación + intercalada; en Ingeniería y Sociedad, autoexplicación"></textarea>
+      </label>
+      <label class="f"><span class="lab">Antes de un parcial <span class="hint">— mi protocolo de los últimos 10 días</span></span>
+        <textarea id="m_parcial" rows="3" placeholder="Cuándo empiezo, cómo me pruebo, qué no hago más"></textarea>
+      </label>
+      <label class="f"><span class="lab">Mis señales de alerta <span class="hint">— cómo me doy cuenta de que estoy cayendo en la ilusión de fluidez, y qué hago</span></span>
+        <textarea id="m_alerta" rows="3" placeholder="Ej.: si me siento demasiado cómoda releyendo, cierro la carpeta y me pruebo"></textarea>
+      </label>
+      <div class="lab-actions">
+        <button type="button" class="btn btn-primary" onclick="saveMet()">Guardar mi método</button>
+        <button type="button" class="btn btn-ghost" onclick="downloadMet()">Descargar mi método</button>
+      </div>
+      <p class="saved-note" id="metNote" style="color:var(--muted)"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p style="margin:0 0 6px"><span class="brand" style="font-size:14px">Autonom<b style="color:var(--ink)">IA</b></span> · por Belén Tapia · CC BY-SA 4.0</p>
+      <p style="margin:0 0 6px">UTN Facultad Regional San Rafael · Área de Orientación Educativa</p>
+      <p style="margin:0;font-size:12.5px;color:var(--muted)">Recurso de autoría propia. Esta obra está bajo licencia Creative Commons Atribución-CompartirIgual 4.0 (CC BY-SA 4.0).</p>
+    </div>
+    <div class="refs">
+      <b>Marco de referencia</b><br>
+      Dunlosky et al. (2013) · Bjork &amp; Bjork (2011) · Roediger &amp; Karpicke (2006) · Zimmerman (2002) · Theobald (2021).
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="close" onclick="closeModal()" aria-label="Cerrar">×</button>
+    <span class="tnum" id="m_num"></span>
+    <h3 id="m_title"></h3>
+    <div class="field"><span class="lab">Qué es</span><p id="m_que"></p></div>
+    <div class="field"><span class="lab">Cómo se hace en ingeniería</span><p id="m_como"></p></div>
+    <div class="field"><span class="lab">Cuándo conviene</span><p id="m_cuando"></p></div>
+    <div class="field err"><span class="lab" style="color:var(--coral)">El error típico</span><p id="m_error"></p></div>
+    <div class="extra" id="m_extra"></div>
+  </div>
+</div>
+
+<script>
+const TECNICAS=[
+ {n:1,t:"Práctica de recuperación",evi:"top",sub:"ponerte a prueba",
+  que:"Cerrar el material e intentar producir lo aprendido desde cero: resolver sin mirar, escribir lo que recordás, responder preguntas propias. Es la técnica con más evidencia acumulada de todo el campo.",
+  como:"Terminás un tema de Análisis: cerrás la carpeta y resolvés un ejercicio del práctico sin mirar nada. Recién después corregís contra el apunte. Las guías de TP son un banco de preguntas gratis: usalas para probarte, no para copiar resoluciones.",
+  cuando:"Siempre, y especialmente antes de parciales. Reemplaza a la relectura como forma principal de repaso.",
+  error:"Mirar la solución a los 30 segundos de trabarte. El esfuerzo por recuperar es exactamente lo que produce el aprendizaje: bancate el atasco unos minutos antes de espiar."},
+ {n:2,t:"Práctica espaciada",evi:"top",sub:"distribuir en el tiempo",
+  que:"Distribuir el estudio de un tema en varias sesiones separadas por días, en lugar de una maratón. Mismo tiempo total, resultados muy superiores en retención.",
+  como:"En vez de 6 horas de Física el domingo: 2 el lunes, 2 el miércoles, 2 el sábado. Cada sesión arranca recuperando lo de la anterior (se combina con la técnica 1).",
+  cuando:"Para todo el semestre. Es la única técnica que vuelve manejables los finales: lo espaciado se retiene meses; lo maratoneado da la sensación de haber estudiado mucho, pero no se fija.",
+  error:"Creer que 'rinde más todo junto porque me meto en tema'. Esa inmersión se siente productiva (ilusión de fluidez) pero se olvida rápido. El olvido parcial entre sesiones es parte del mecanismo."},
+ {n:3,t:"Práctica intercalada",evi:"",sub:"mezclar tipos de problema",
+  que:"Mezclar tipos de problemas en una misma sesión en lugar de resolver veinte iguales seguidos.",
+  como:"En vez de hacer todas las derivadas por regla de la cadena juntas: armá tandas mezcladas con derivadas de distintos tipos. El parcial no te avisa de qué tipo es cada ejercicio; entrenar mezclado entrena la decisión de qué método usar, que es la mitad del problema.",
+  cuando:"En materias de resolución de problemas (Análisis, Álgebra, Física), una vez que cada tipo ya sale por separado.",
+  error:"Usarla demasiado pronto. Primero se aprende cada tipo en bloque; se intercala para consolidar y entrenar la elección del método."},
+ {n:4,t:"Explicarlo como si enseñaras",evi:"",sub:"autoexplicación",
+  que:"Explicar el tema en voz alta o por escrito, con palabras propias, como si se lo enseñaras a alguien que no lo vio nunca. Donde la explicación se traba, ahí está el agujero.",
+  como:"Agarrá el teorema o el procedimiento y explicáselo a un compañero, a tu mamá o a quien sea. El destinatario no importa; importa reconstruir la lógica completa sin saltearte pasos.",
+  cuando:"Para temas conceptuales y procedimientos largos; ideal en grupo, donde explicar por turnos beneficia más al que explica que al que escucha.",
+  error:"Recitar la definición del apunte con otra entonación. Si tu explicación usa las mismas palabras del apunte, no estás explicando: estás releyendo en voz alta.",
+  extra:{label:"▶ Ver la técnica Feynman en video",url:"https://www.youtube.com/watch?v=raQUW-ynNHs",note:"Video de educalive (YouTube). Explica los cuatro pasos del método Feynman, que es autoexplicación llevada al extremo."}},
+ {n:5,t:"Del ejemplo resuelto al problema",evi:"",sub:"y no al revés",
+  que:"Estudiar primero ejemplos resueltos paso a paso entendiendo el porqué de cada paso, y pasar gradualmente a resolver solo: primero completando pasos que faltan, después desde cero.",
+  como:"Antes de encarar la guía de TP: tomá dos ejercicios resueltos y explicate cada paso (¿por qué acá factoriza?, ¿por qué este método?). Después tapá la mitad y completala. Recién entonces andá a los ejercicios pelados.",
+  cuando:"Al arrancar un tema nuevo, cuando todavía no hay base para resolver desde cero. Es el puente de entrada; las técnicas 1 y 3 son la consolidación.",
+  error:"Quedarte a vivir en los ejemplos resueltos. Leer resoluciones ajenas se siente seguro, pero el parcial pide producción propia: el ejemplo resuelto es rampa de salida, no destino."},
+ {n:6,t:"Doble vía: dibujarlo además de escribirlo",evi:"",sub:"dos códigos fijan más que uno",
+  que:"Acompañar el material verbal con representación visual hecha por vos: diagramas, esquemas, mapas, gráficos. Dos códigos de entrada fijan más que uno.",
+  como:"Cada tema de Física merece su dibujo: el sistema, las fuerzas, el antes y el después. En Álgebra, graficá lo que las fórmulas dicen. El criterio: el dibujo lo hacés vos, no lo copiás del libro; el valor está en traducir.",
+  cuando:"Temas con estructura espacial o de proceso; y para armar el mapa general de la materia antes del parcial (una hoja, todo el programa, conexiones a mano).",
+  error:"Decorar. Si el esquema es el texto del apunte adentro de globitos de colores, no hay traducción entre códigos: hay caligrafía. El esquema útil suele ser feo y propio."},
+ {n:7,t:"Gestión de la atención",evi:"",sub:"el bloque protegido",
+  que:"Estudiar en bloques cortos de concentración total (25 a 40 minutos) con el celular fuera del alcance, separados por pausas breves y reales.",
+  como:"Bloque de 30 minutos: celular en otra habitación o en modo avión dentro de la mochila (no boca abajo en la mesa: su sola presencia visible roba atención). Suena la alarma, pausa de 5 que no sea scrollear, y de vuelta.",
+  cuando:"Siempre que el rendimiento por hora importe más que las horas. Tres bloques protegidos valen más que una tarde entera de estudio interrumpido.",
+  error:"Pausas que se comen el bloque: los 5 minutos de Instagram que duran 40. La pausa buena es física: agua, ventana, caminar. La de pantalla no descansa la atención, la secuestra.",
+  extra:{label:"⏱ Abrir temporizador Pomodoro",url:"https://pomofocus.io",note:"Pomofocus (herramienta gratuita, no es un recurso abierto). Sirve para cronometrar tus bloques de 25–40 min y las pausas."}},
+ {n:8,t:"El grupo de estudio con método",evi:"",sub:"estructura, no juntada",
+  que:"Estudiar con otros, pero con estructura: explicarse temas por turnos, resolverse ejercicios mutuamente, tomarse el tiempo de un parcial simulado. El grupo potencia las técnicas 1 y 4; sin estructura, las diluye.",
+  como:"Reunión de 2 horas con agenda: 30 min de explicarse el tema por turnos, 60 de resolver mezclado cada uno por su lado, 30 de comparar resoluciones y discutir las diferencias. Las diferencias son el oro de la reunión.",
+  cuando:"Para consolidar antes de parciales y para sostener la constancia: la cita con otros es más difícil de cancelar que la cita con uno mismo.",
+  error:"La juntada donde uno resuelve y los demás copian. Es la versión grupal de mirar la solución: se siente avance y no aprende nadie más que el que resolvió."}
+];
+
+// Render catálogo
+const TRACK='autonomia_track_v1';
+function readTrack(){try{const v=localStorage.getItem(TRACK);return v?JSON.parse(v):[]}catch(e){return []}}
+function writeTrack(a){try{localStorage.setItem(TRACK,JSON.stringify(a))}catch(e){}}
+let probadas=readTrack();
+
+const grid=document.getElementById('techGrid');
+TECNICAS.forEach(x=>{
+  const b=document.createElement('div');
+  b.className='tech'+(probadas.includes(x.n)?' done':'');
+  b.setAttribute('role','button');b.tabIndex=0;b.dataset.n=x.n;
+  b.innerHTML=`<span class="donemark">✓</span>
+    <span class="evi ${x.evi==='top'?'top':''}">${x.evi==='top'?'evidencia alta':'evidencia sólida'}</span>
+    <span class="tnum">técnica ${x.n}</span>
+    <h3>${x.t}</h3><p>${x.sub}</p>
+    <label class="tech-check" onclick="event.stopPropagation()">
+      <input type="checkbox" ${probadas.includes(x.n)?'checked':''} onchange="toggleProbada(${x.n},this.checked)">
+      Ya la probé
+    </label>`;
+  // abrir modal al tocar la tarjeta (menos el checkbox)
+  b.addEventListener('click',e=>{ if(e.target.closest('.tech-check'))return; openModal(x.n); });
+  b.addEventListener('keydown',e=>{ if((e.key==='Enter'||e.key===' ')&&!e.target.closest('.tech-check')){e.preventDefault();openModal(x.n);} });
+  grid.appendChild(b);
+});
+function toggleProbada(n,on){
+  if(on){ if(!probadas.includes(n))probadas.push(n); }
+  else { probadas=probadas.filter(v=>v!==n); }
+  writeTrack(probadas);
+  const card=document.querySelector(`.tech[data-n="${n}"]`);
+  if(card)card.classList.toggle('done',on);
+  updateTracker();
+}
+function updateTracker(){
+  const c=probadas.length;
+  document.getElementById('trackCount').textContent=c+' de 8 probadas';
+  document.getElementById('trackBar').style.width=(c/8*100)+'%';
+}
+function resetTrack(){
+  if(!confirm('¿Reiniciar tu progreso de técnicas probadas?'))return;
+  probadas=[];writeTrack(probadas);
+  document.querySelectorAll('.tech').forEach(t=>t.classList.remove('done'));
+  document.querySelectorAll('.tech-check input').forEach(i=>i.checked=false);
+  updateTracker();
+}
+updateTracker();
+// Poblar select del experimento
+const sel=document.getElementById('e_tec');
+sel.innerHTML='<option value="">Elegí una técnica…</option>'+
+  TECNICAS.map(x=>`<option value="${x.n} · ${x.t}">${x.n} · ${x.t}</option>`).join('');
+
+// Modal
+function openModal(n){
+  const x=TECNICAS.find(t=>t.n===n);
+  m_num.textContent='técnica '+x.n;
+  m_title.textContent=x.t;
+  m_que.textContent=x.que;m_como.textContent=x.como;
+  m_cuando.textContent=x.cuando;m_error.textContent=x.error;
+  const ex=document.getElementById('m_extra');
+  if(x.extra){ex.style.display='block';ex.innerHTML=`<a href="${x.extra.url}" target="_blank" rel="noopener">${x.extra.label}</a><small>${x.extra.note}</small>`}
+  else{ex.style.display='none';ex.innerHTML=''}
+  document.getElementById('modalBg').classList.add('open');
+}
+function closeModal(){document.getElementById('modalBg').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+// ---- Persistencia (localStorage con try/catch) ----
+const EXP='autonomia_exp_v1', MET='autonomia_met_v1';
+const ef=['e_tec','e_mat','e_part','e_hip','e_evi','e_ver_txt'];
+function readStore(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}}
+function writeStore(k,o){try{localStorage.setItem(k,JSON.stringify(o));return true}catch(e){return false}}
+
+function collectExp(){
+  const o={};ef.forEach(id=>o[id]=document.getElementById(id).value);
+  o.e_adv=document.getElementById('e_adv').checked;
+  const v=document.querySelector('input[name=ver]:checked');o.ver=v?v.value:'';
+  return o;
+}
+function saveExp(){
+  const ok=writeStore(EXP,collectExp());
+  const n=document.getElementById('expNote');
+  n.textContent=ok?'✓ Guardado en este navegador — '+new Date().toLocaleString('es-AR'):'No se pudo guardar acá. Usá "Descargar ficha" para no perderlo.';
+}
+function clearExp(){
+  if(!confirm('¿Vaciar el experimento actual?'))return;
+  ef.forEach(id=>document.getElementById(id).value='');
+  document.getElementById('e_adv').checked=false;
+  const v=document.querySelector('input[name=ver]:checked');if(v)v.checked=false;
+  try{localStorage.removeItem(EXP)}catch(e){}
+  document.getElementById('expNote').textContent='';
+}
+function downloadExp(){
+  const o=collectExp();
+  const txt=`EXPERIMENTO — AutonomIA / Mi método
+========================================
+Técnica elegida:      ${o.e_tec||'—'}
+Materia y tema:       ${o.e_mat||'—'}
+Mi punto de partida:  ${o.e_part||'—'}
+Mi hipótesis:         ${o.e_hip||'—'}
+Cómo sabré si funcionó: ${o.e_evi||'—'}
+Dificultad aceptada:  ${o.e_adv?'Sí':'No'}
+----------------------------------------
+Veredicto:            ${o.ver||'(pendiente)'}
+¿Por qué?:            ${o.e_ver_txt||'—'}
+`;
+  dl(txt,'experimento-mi-metodo.txt');
+}
+
+const mf=['m_antes','m_durante','m_parcial','m_alerta'];
+function collectMet(){const o={};mf.forEach(id=>o[id]=document.getElementById(id).value);return o}
+function saveMet(){
+  const ok=writeStore(MET,collectMet());
+  const n=document.getElementById('metNote');
+  n.textContent=ok?'✓ Guardado en este navegador — '+new Date().toLocaleString('es-AR'):'No se pudo guardar acá. Usá "Descargar mi método".';
+}
+function downloadMet(){
+  const o=collectMet();
+  const txt=`MI MÉTODO (versión 1) — AutonomIA
+========================================
+ANTES DE ESTUDIAR:
+${o.m_antes||'—'}
+
+MIENTRAS ESTUDIO:
+${o.m_durante||'—'}
+
+ANTES DE UN PARCIAL:
+${o.m_parcial||'—'}
+
+MIS SEÑALES DE ALERTA:
+${o.m_alerta||'—'}
+`;
+  dl(txt,'mi-metodo-v1.txt');
+}
+function dl(txt,name){
+  const b=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+// Restaurar al cargar
+(function(){
+  const e=readStore(EXP);
+  if(e){ef.forEach(id=>{if(e[id]!=null)document.getElementById(id).value=e[id]});
+    if(e.e_adv)document.getElementById('e_adv').checked=true;
+    if(e.ver){const r=document.querySelector(`input[name=ver][value="${e.ver}"]`);if(r)r.checked=true}
+    document.getElementById('expNote').textContent='Recuperado de tu último guardado.';}
+  const m=readStore(MET);
+  if(m){mf.forEach(id=>{if(m[id]!=null)document.getElementById(id).value=m[id]});
+    document.getElementById('metNote').textContent='Recuperado de tu último guardado.';}
+})();
+
+// ---- Barra de progreso de lectura ----
+const pbar=document.getElementById('progressbar');
+function onScroll(){
+  const h=document.documentElement;
+  const scrolled=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  pbar.style.width=(scrolled*100)+'%';
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// ---- Animación de entrada al hacer scroll ----
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduce && 'IntersectionObserver' in window){
+  document.querySelectorAll('section, .hero .wrap').forEach(el=>el.classList.add('reveal'));
+  const io=new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+</script>
+</body>
+</html>
