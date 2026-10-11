@@ -176,6 +176,62 @@ nav{top:0}
 .tech-check{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--muted);cursor:pointer;user-select:none}
 .tech-check input{width:17px;height:17px;accent-color:var(--moss);cursor:pointer}
 
+/* ---- ¿Por dónde empiezo? ---- */
+.starter{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 20px}
+.starter h3{font-size:18px;margin:0 0 4px}
+.starter p.s-sub{margin:0 0 14px;color:var(--muted);font-size:14.5px}
+.starter .opts{display:flex;flex-direction:column;gap:8px}
+.starter .opt{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;transition:.15s}
+.starter .opt:hover{border-color:var(--moss);background:var(--moss-soft)}
+.starter .s-result{margin-top:14px;padding:14px 16px;background:var(--moss-soft);border:1px solid var(--moss);border-radius:12px;font-size:14.5px}
+.starter .s-result b{color:var(--ink)}
+.starter .s-result .btn{font-size:14px;padding:9px 16px;margin-top:10px}
+
+/* ---- Estado por técnica en las tarjetas ---- */
+.tech .tstate{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;font-weight:700;color:var(--muted);font-family:'Space Mono',monospace;min-height:1px}
+.tech.st-probando{border-color:#e7cf96}
+.tech.st-adoptada{background:var(--moss-soft);border-color:var(--moss)}
+.tech.st-ajustes{background:var(--amber-soft);border-color:#e7cf96}
+.tech.st-descartada{opacity:.72}
+.tech.st-adoptada .donemark{background:var(--moss);border-color:var(--moss);color:#fff}
+.tech.st-ajustes .donemark{background:var(--amber);border-color:var(--amber);color:#3a2606}
+.tech.st-descartada .donemark{background:var(--muted);border-color:var(--muted);color:#fff}
+.tech.st-probando .donemark{background:#fff;border-color:var(--amber);color:var(--amber)}
+.tech.st-adoptada .tstate{color:var(--moss)}
+.tech.st-ajustes .tstate{color:#8a5c12}
+
+/* ---- Acciones del modal ---- */
+.modal .m-actions{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.modal .m-actions>.btn{font-size:15px;padding:12px 20px}
+.m-verdict{margin-top:18px}
+.m-verdict .vlab{font-size:13px;color:var(--muted);font-weight:600;display:block;margin:0 0 9px}
+.m-verdict .vopts{display:flex;flex-wrap:wrap;gap:8px}
+.vchip{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s}
+.vchip:hover{border-color:var(--moss)}
+.vchip.sel-probando{background:#fff;border-color:var(--amber);color:#8a5c12}
+.vchip.sel-adoptada{background:var(--moss);border-color:var(--moss);color:#fff}
+.vchip.sel-ajustes{background:var(--amber);border-color:var(--amber);color:#3a2606}
+.vchip.sel-descartada{background:var(--muted);border-color:var(--muted);color:#fff}
+
+/* ---- Ciclo de Zimmerman ---- */
+.cycle{display:flex;align-items:stretch;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.cycle .step{flex:1;min-width:150px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 16px}
+.cycle .step .sn{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--amber)}
+.cycle .step b{display:block;font-family:'Fraunces',serif;font-size:16px;color:#fff;margin:3px 0 4px;font-weight:600}
+.cycle .step span{font-size:13px;color:#a9c6ba}
+.cycle .arrow{align-self:center;color:#6f8f82;font-size:20px}
+@media(max-width:640px){.cycle .arrow{display:none}}
+.cycle-note{margin:0 0 26px;font-size:13.5px;color:#a9c6ba}
+.phase{font-family:'Fraunces',serif;font-size:16px;color:#fff;font-weight:600;margin:8px 0 -2px;display:flex;align-items:center;gap:8px}
+.phase .pn{font-family:'Space Mono',monospace;font-size:12px;color:var(--amber);font-weight:700;background:rgba(232,163,61,.15);border-radius:6px;padding:2px 7px}
+
+/* ---- Semilla de Mi método ---- */
+.seed{background:var(--moss-soft);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 24px}
+.seed h3{font-size:16px;margin:0 0 10px}
+.seed .seed-list{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.seed .seed-item{background:#fff;border:1px solid var(--moss);color:var(--moss);border-radius:999px;padding:5px 12px;font-size:13.5px;font-weight:600}
+.seed .seed-empty{color:var(--muted);font-size:14px;margin:0}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -245,6 +301,20 @@ nav{top:0}
       <h2>Ocho técnicas con evidencia a favor</h2>
       <p>Tocá cada una para ver qué es, cómo se hace en una materia de ingeniería, cuándo conviene y el error típico. No las leas todas de una: elegí por dónde empezar y probá.</p>
     </div>
+
+    <div class="starter">
+      <h3>¿Por dónde empiezo?</h3>
+      <p class="s-sub">Elegí la frase que más se parece a cómo estudiás hoy y te sugerimos una técnica para probar primero.</p>
+      <div class="opts">
+        <button class="opt" type="button" onclick="suggest(1)">Releo y subrayo, pero no me pongo a prueba</button>
+        <button class="opt" type="button" onclick="suggest(2)">Dejo todo para último momento y estudio en maratones</button>
+        <button class="opt" type="button" onclick="suggest(7)">Me distraigo todo el tiempo, el celular me gana</button>
+        <button class="opt" type="button" onclick="suggest(5)">Me cuesta arrancar un tema nuevo desde cero</button>
+        <button class="opt" type="button" onclick="suggest(1)">Entiendo en clase, pero en el parcial me bloqueo</button>
+      </div>
+      <div class="s-result" id="sResult" hidden></div>
+    </div>
+
     <div class="tracker">
       <span class="count" id="trackCount">0 de 8 probadas</span>
       <div class="bar"><span id="trackBar"></span></div>
@@ -267,6 +337,15 @@ nav{top:0}
       <p>Completá esto al elegir la técnica (antes) y volvé a las dos semanas para el veredicto (después). En el medio, solo aplicala y anotá una línea por sesión en tu registro.</p>
     </div>
 
+    <div class="cycle">
+      <div class="step"><span class="sn">paso 1</span><b>Planificar</b><span>Elegí técnica, materia e hipótesis.</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="sn">paso 2</span><b>Ejecutar</b><span>Aplicala una o dos semanas, con un registro mínimo.</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><span class="sn">paso 3</span><b>Evaluar</b><span>Escribí tu veredicto: qué funcionó y qué no.</span></div>
+    </div>
+    <p class="cycle-note">Este recorrido es el ciclo de aprendizaje autorregulado (Zimmerman): no aprendés <em>sobre</em> el método de estudio, lo construís recorriéndolo.</p>
+
     <div class="rules">
       <div class="rule"><b>Uno por vez</b>Un experimento a la vez (máximo dos si son de materias distintas).</div>
       <div class="rule"><b>Lejos del parcial</b>Nada de experimentos la semana previa a un parcial. Se rinde con el método ya validado.</div>
@@ -274,6 +353,7 @@ nav{top:0}
     </div>
 
     <form id="expForm" autocomplete="off">
+      <div class="phase"><span class="pn">1</span> Planificar <span style="font-weight:400;font-size:13px;color:#9fc0b3">— antes de empezar</span></div>
       <label class="f"><span class="lab">Técnica elegida</span>
         <select id="e_tec"></select>
       </label>
@@ -289,11 +369,13 @@ nav{top:0}
       <label class="f"><span class="lab">Cómo voy a saber si funcionó <span class="hint">— la evidencia que vas a mirar</span></span>
         <textarea id="e_evi" rows="2" placeholder="Ej.: cuántos ejercicios salen solos; resultado de una práctica de parcial; sensación de control en clase"></textarea>
       </label>
+      <div class="phase"><span class="pn">2</span> Ejecutar <span style="font-weight:400;font-size:13px;color:#9fc0b3">— durante una o dos semanas</span></div>
       <div class="check">
         <input type="checkbox" id="e_adv">
         <label for="e_adv">Sé que los primeros días esta técnica se va a sentir más difícil que mi método de siempre, y que eso no es señal de que falle. <b>(la dificultad deseable, aceptada)</b></label>
       </div>
 
+      <div class="phase"><span class="pn">3</span> Evaluar <span style="font-weight:400;font-size:13px;color:#9fc0b3">— al terminar</span></div>
       <label class="f"><span class="lab">Veredicto <span class="hint">— completalo recién al terminar</span></span></label>
       <div class="verdict">
         <label><input type="radio" name="ver" value="La adopto"><span>La adopto</span></label>
@@ -320,6 +402,10 @@ nav{top:0}
       <p class="eye">el artefacto final</p>
       <h2>Mi método <span class="pill">versión 1</span></h2>
       <p>Cuando tengas dos a cuatro experimentos con veredicto, armá esto: una página, tuya, con lo que te funcionó. No tiene que ser el mismo método para todas las materias. Se versiona: la v2 la armás al cierre del segundo semestre.</p>
+    </div>
+    <div class="seed">
+      <h3>Lo que te funcionó, según tus experimentos</h3>
+      <div id="seedBody"></div>
     </div>
     <form id="metForm" autocomplete="off">
       <label class="f"><span class="lab">Antes de estudiar <span class="hint">— cómo planifico la semana, en qué momentos rindo, cómo armo el bloque protegido</span></span>
@@ -368,6 +454,19 @@ nav{top:0}
     <div class="field"><span class="lab">Cuándo conviene</span><p id="m_cuando"></p></div>
     <div class="field err"><span class="lab" style="color:var(--coral)">El error típico</span><p id="m_error"></p></div>
     <div class="extra" id="m_extra"></div>
+    <div class="m-actions">
+      <button class="btn btn-primary" id="m_probar" type="button">Probar esta técnica →</button>
+      <div class="m-verdict">
+        <span class="vlab">¿Ya la probaste? Marcá cómo te fue (se guarda y aparece en "Mi método"):</span>
+        <div class="vopts" id="m_vopts">
+          <button class="vchip" data-v="probando" type="button">Probándola</button>
+          <button class="vchip" data-v="adoptada" type="button">La adopté</button>
+          <button class="vchip" data-v="ajustes" type="button">Con ajustes</button>
+          <button class="vchip" data-v="descartada" type="button">La descarté</button>
+          <button class="vchip" data-v="" type="button">Sin marcar</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -417,58 +516,91 @@ const TECNICAS=[
   error:"La juntada donde uno resuelve y los demás copian. Es la versión grupal de mirar la solución: se siente avance y no aprende nadie más que el que resolvió."}
 ];
 
-// Render catálogo
-const TRACK='autonomia_track_v1';
-function readTrack(){try{const v=localStorage.getItem(TRACK);return v?JSON.parse(v):[]}catch(e){return []}}
-function writeTrack(a){try{localStorage.setItem(TRACK,JSON.stringify(a))}catch(e){}}
-let probadas=readTrack();
+// ---- Estado por técnica (veredictos) ----
+const EST='autonomia_estado_v2';
+function readEst(){try{const v=localStorage.getItem(EST);return v?JSON.parse(v):{}}catch(e){return {}}}
+function writeEst(o){try{localStorage.setItem(EST,JSON.stringify(o))}catch(e){}}
+let estado=readEst();
+// migración desde la versión anterior (array simple de "probadas")
+(function(){try{const old=localStorage.getItem('autonomia_track_v1');if(old&&Object.keys(estado).length===0){const arr=JSON.parse(old);if(Array.isArray(arr)&&arr.length){arr.forEach(n=>estado[n]='probando');writeEst(estado);}}}catch(e){}})();
+
+const EST_LABEL={probando:'Probándola',adoptada:'Adoptada',ajustes:'Con ajustes',descartada:'Descartada'};
+const EST_MARK={probando:'·',adoptada:'✓',ajustes:'✓',descartada:'✕'};
 
 const grid=document.getElementById('techGrid');
 TECNICAS.forEach(x=>{
   const b=document.createElement('div');
-  b.className='tech'+(probadas.includes(x.n)?' done':'');
-  b.setAttribute('role','button');b.tabIndex=0;b.dataset.n=x.n;
-  b.innerHTML=`<span class="donemark">✓</span>
+  b.className='tech';b.dataset.n=x.n;
+  b.setAttribute('role','button');b.tabIndex=0;
+  b.innerHTML=`<span class="donemark"></span>
     <span class="evi ${x.evi==='top'?'top':''}">${x.evi==='top'?'evidencia alta':'evidencia sólida'}</span>
     <span class="tnum">técnica ${x.n}</span>
     <h3>${x.t}</h3><p>${x.sub}</p>
-    <label class="tech-check" onclick="event.stopPropagation()">
-      <input type="checkbox" ${probadas.includes(x.n)?'checked':''} onchange="toggleProbada(${x.n},this.checked)">
-      Ya la probé
-    </label>`;
-  // abrir modal al tocar la tarjeta (menos el checkbox)
-  b.addEventListener('click',e=>{ if(e.target.closest('.tech-check'))return; openModal(x.n); });
-  b.addEventListener('keydown',e=>{ if((e.key==='Enter'||e.key===' ')&&!e.target.closest('.tech-check')){e.preventDefault();openModal(x.n);} });
+    <div class="tstate" data-state></div>`;
+  b.addEventListener('click',()=>openModal(x.n));
+  b.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(x.n);} });
   grid.appendChild(b);
+  paintCard(x.n);
 });
-function toggleProbada(n,on){
-  if(on){ if(!probadas.includes(n))probadas.push(n); }
-  else { probadas=probadas.filter(v=>v!==n); }
-  writeTrack(probadas);
+
+function paintCard(n){
   const card=document.querySelector(`.tech[data-n="${n}"]`);
-  if(card)card.classList.toggle('done',on);
-  updateTracker();
+  if(!card)return;
+  const st=estado[n];
+  card.classList.remove('st-probando','st-adoptada','st-ajustes','st-descartada');
+  const mark=card.querySelector('.donemark');
+  const lab=card.querySelector('[data-state]');
+  if(st){card.classList.add('st-'+st);mark.textContent=EST_MARK[st]||'';lab.textContent=EST_LABEL[st]||'';}
+  else{mark.textContent='';lab.textContent='';}
+}
+function setEstado(n,st){
+  if(st){estado[n]=st;}else{delete estado[n];}
+  writeEst(estado);
+  paintCard(n);updateTracker();updateSeed();paintVerdictChips(n);
 }
 function updateTracker(){
-  const c=probadas.length;
-  document.getElementById('trackCount').textContent=c+' de 8 probadas';
-  document.getElementById('trackBar').style.width=(c/8*100)+'%';
+  const vals=Object.values(estado);
+  const probadas=vals.length;
+  const sirven=vals.filter(v=>v==='adoptada'||v==='ajustes').length;
+  document.getElementById('trackCount').textContent=probadas+' de 8 probadas · '+sirven+' que te sirven';
+  document.getElementById('trackBar').style.width=(probadas/8*100)+'%';
 }
 function resetTrack(){
-  if(!confirm('¿Reiniciar tu progreso de técnicas probadas?'))return;
-  probadas=[];writeTrack(probadas);
-  document.querySelectorAll('.tech').forEach(t=>t.classList.remove('done'));
-  document.querySelectorAll('.tech-check input').forEach(i=>i.checked=false);
-  updateTracker();
+  if(!confirm('¿Reiniciar tu progreso con las técnicas?'))return;
+  estado={};writeEst(estado);
+  TECNICAS.forEach(x=>paintCard(x.n));
+  updateTracker();updateSeed();
 }
 updateTracker();
+
+// ---- ¿Por dónde empiezo? ----
+function suggest(n){
+  const x=TECNICAS.find(t=>t.n===n);
+  const box=document.getElementById('sResult');
+  box.hidden=false;
+  box.innerHTML=`Te sugerimos empezar por la <b>técnica ${n}: ${x.t}</b>.<br><button class="btn btn-primary" type="button" onclick="openModal(${n})">Ver la técnica ${n}</button>`;
+}
+
+// ---- Semilla de "Mi método" ----
+function updateSeed(){
+  const body=document.getElementById('seedBody');if(!body)return;
+  const items=TECNICAS.filter(x=>estado[x.n]==='adoptada'||estado[x.n]==='ajustes');
+  if(items.length===0){
+    body.innerHTML='<p class="seed-empty">Todavía no marcaste técnicas como adoptadas. A medida que pruebes y marques cuáles te funcionan, van a aparecer acá para que armes tu método.</p>';
+  }else{
+    body.innerHTML='<div class="seed-list">'+items.map(x=>`<span class="seed-item">${x.n} · ${x.t}${estado[x.n]==='ajustes'?' (con ajustes)':''}</span>`).join('')+'</div>';
+  }
+}
+updateSeed();
 // Poblar select del experimento
 const sel=document.getElementById('e_tec');
 sel.innerHTML='<option value="">Elegí una técnica…</option>'+
   TECNICAS.map(x=>`<option value="${x.n} · ${x.t}">${x.n} · ${x.t}</option>`).join('');
 
 // Modal
+let currentTec=null;
 function openModal(n){
+  currentTec=n;
   const x=TECNICAS.find(t=>t.n===n);
   m_num.textContent='técnica '+x.n;
   m_title.textContent=x.t;
@@ -477,8 +609,29 @@ function openModal(n){
   const ex=document.getElementById('m_extra');
   if(x.extra){ex.style.display='block';ex.innerHTML=`<a href="${x.extra.url}" target="_blank" rel="noopener">${x.extra.label}</a><small>${x.extra.note}</small>`}
   else{ex.style.display='none';ex.innerHTML=''}
+  paintVerdictChips(n);
   document.getElementById('modalBg').classList.add('open');
 }
+function paintVerdictChips(n){
+  const cur=estado[n]||'';
+  document.querySelectorAll('#m_vopts .vchip').forEach(ch=>{
+    const v=ch.dataset.v;
+    ch.className='vchip'+(v===cur&&v?' sel-'+v:'');
+  });
+}
+document.getElementById('m_vopts').addEventListener('click',e=>{
+  const ch=e.target.closest('.vchip');if(!ch||currentTec==null)return;
+  setEstado(currentTec,ch.dataset.v);
+});
+document.getElementById('m_probar').addEventListener('click',()=>{
+  if(currentTec==null)return;
+  const x=TECNICAS.find(t=>t.n===currentTec);
+  const s=document.getElementById('e_tec');
+  s.value=`${x.n} · ${x.t}`;
+  closeModal();
+  document.getElementById('lab').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>{const mat=document.getElementById('e_mat');if(mat)mat.focus({preventScroll:true});},550);
+});
 function closeModal(){document.getElementById('modalBg').classList.remove('open')}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
